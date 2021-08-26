@@ -1,0 +1,95 @@
+<div class="container " *ngIf="formStudent">
+  <form [formGroup]="formStudent" (ngSubmit)="saveStudent()">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="form6Example1" formControlName="firstName" class="form-control"/>
+          <label class="form-label" for="form6Example1">First name</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="lastname" formControlName="lastName" class="form-control"/>
+          <label class="form-label" for="lastname">Last name</label>
+        </div>
+      </div>
+    </div>
+    <!-- Number input -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input type="number" id="tel" formControlName="phone" class="form-control"/>
+          <label class="form-label" for="tel">telephone</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="cne" formControlName="cne" class="form-control"/>
+          <label class="form-label" for="cne">CNE</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" id="email" formControlName="email" class="form-control"/>
+      <label class="form-label" for="email">Email</label>
+    </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <input type="text" id="address" formControlName="address" class="form-control"/>
+      <label class="form-label" for="address">adresse</label>
+    </div>
+
+    <!-- annee bac input -->
+    <div class="form-outline mb-4">
+      <input type="text" id="annee" formControlName="bacYear" class="form-control"/>
+      <label class="form-label" for="annee">Annee obtention de Bac</label>
+    </div>
+    <!--parcour input -->
+    <div class="row mb-4">
+      <div class="col">
+        <select class="browser-default custom-select" formControlName="careerOption">
+          <option selected>les option de parcours</option>
+          <option value="1">Ingénierie des Systèmes d'Information</option>
+          <option value="2">Ingénierie des Systèmes</option>
+          <option value="3">Réseaux et Télécommunication</option>
+        </select>
+      </div>
+
+      <div class="col">
+        <select class="browser-default custom-select" formControlName="desiredCareer">
+          <option selected>parcours desiree</option>
+          <option value="1">Bac +2</option>
+          <option value="2">Bac +3</option>
+          <option value="3">Bac +5</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- -->
+    <div class="btn-group">
+      <input
+        type="radio"
+        class="btn-check"
+        name="options"
+        id="option1"
+        autocomplete="off"
+        checked
+      />
+      <label class="btn btn-primary" for="option1">femme</label>
+
+      <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off"/>
+      <label class="btn btn-primary" for="option2">homme</label>
+
+    </div>
+
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">{{ userId ? 'Update' : 'Save' }}</button>
+
+
+  </form>
+</div>

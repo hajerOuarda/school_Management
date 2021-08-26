@@ -1,0 +1,77 @@
+<div class="container ">
+  <form [formGroup]="formProfesseur" (ngSubmit)="saveProfessor()">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="form6Example1" formControlName="firstName" class="form-control"/>
+          <label class="form-label" for="form6Example1">First name</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="lastname" formControlName="lastName" class="form-control"/>
+          <label class="form-label" for="lastname">Last name</label>
+        </div>
+      </div>
+    </div>
+    <!-- titre input -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input type="text" id="tel" formControlName="titreProf" class="form-control"/>
+          <label class="form-label" for="tel">titre Professeur</label>
+        </div>
+      </div>
+      <!-- matiere input -->
+      <div class="form-outline mb-4">
+        <input type="text" id="annee" formControlName="matiereEnseigne" class="form-control"/>
+        <label class="form-label" for="annee">Matiere enseigne</label>
+      </div>
+
+      <!-- CIN input -->
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="cne" formControlName="cin" class="form-control"/>
+          <label class="form-label" for="cne">CIN</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" id="email" formControlName="email" class="form-control"/>
+      <label class="form-label" for="email">Email</label>
+    </div>
+
+    <div class="row mb-4">
+
+      <!-- salaire input -->
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input type="text" id="salaire" formControlName="salaire" class="form-control"/>
+          <label class="form-label" for="salaire">Salaire</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input type="number" id="phone" formControlName="phone" class="form-control"/>
+          <label class="form-label" for="phone">telephone</label>
+        </div>
+    </div>
+    </div>
+
+    <!-- CV input -->
+    <div class="form-outline mb-4">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile01" formControlName="CV"
+               aria-describedby="inputGroupFileAddon01">
+        <label class="custom-file-label" for="inputGroupFile01">Choose CV file</label>
+      </div>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">enregistrer professeur</button>
+
+  </form>
+</div>

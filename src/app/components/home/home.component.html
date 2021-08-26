@@ -1,0 +1,83 @@
+<p>home works!</p>
+
+<table class="table -table-tennis">
+  <thead class="table-primary ">
+  <td> First name</td>
+  <td> last name</td>
+  <td> Email</td>
+  <td> Cne</td>
+  <td> Adresse</td>
+  <td> AnneeBac</td>
+  <td> ParcoursDesiree</td>
+  <td> OptionParcours</td>
+  <td> Sexe</td>
+  </thead>
+  <tbody>
+  <tr>
+    <td colspan="9">
+      <table class="table mb-0">
+        <tr *ngFor="let user of students">
+          <td>  {{user.firstName}} </td>
+          <td> {{user.lastName}} </td>
+          <td> {{user.email}} </td>
+          <td> {{user.cne}} </td>
+          <td> {{user.adresse}} </td>
+          <td> {{user.anneeBac}} </td>
+          <td> {{user.parcoursDesiree}} </td>
+          <td> {{user.optionParcours}} </td>
+          <td> {{user.sexe }} </td>
+          <button type="button" (click)="updateUser(user.id)" class="btn btn-info btn-rounded"> Update</button>
+
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  </tbody>
+  <button type="button" class="btn btn-info btn-rounded"
+          (click)="navigateToStudent()">Add student
+  </button>
+</table>
+
+
+<br>
+<!-- Professor table -->
+
+<table class="table -table-tennis">
+  <thead class="table-primary ">
+  <td> First name</td>
+  <td> last name</td>
+  <td> Phone</td>
+  <td> Email</td>
+  </thead>
+  <tbody>
+  <tr>
+    <td colspan="4">
+      <table class="table mb-0">
+
+        <tr *ngFor="let user of professors">
+          <td>  {{user.firstName}} </td>
+
+          <td> {{user.lastName}} </td>
+          <td> {{user.email}} </td>
+          <td> {{user.phone}} </td>
+          <td> {{user.userType }} </td>
+          <button type="button" (click)="updateUser(user.id, 'prof')" class="btn btn-info btn-rounded"> Update</button>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+
+  </tbody>
+
+  <button type="button" class="btn btn-info btn-rounded"
+          (click)="navigateToProfessor()">Add Professor
+  </button>
+
+</table>
+
+
+
+
+
