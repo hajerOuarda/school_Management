@@ -2,12 +2,11 @@ import {User} from "./user";
 
 export class Student extends User {
     cne! :number;
-    adresse!:String;
-    anneeBac!:String;
-    parcoursDesiree! :String ;
-    optionParcours!:String ;
-    sexe?: 'femme'|'homme'|'autre' ;
-    // userType = 'Student';
+    address!:String;
+  bacYear!:String;
+  desiredCareer! :String ;
+  careerOption!:String ;
+    sex?: 'femme'|'homme'|'autre' ;
 
 
 }

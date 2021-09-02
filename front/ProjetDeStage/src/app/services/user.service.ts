@@ -20,7 +20,7 @@ export class UserService {
     return this.httpClient.post(environment.apiUrl + "user/" + type, user);
   }
 
-  showAllUSer() {
+  showAllUsers() {
     return this.httpClient.get(environment.apiUrl + "user/")
       .pipe(
         map((el: any) => {
@@ -41,5 +41,9 @@ export class UserService {
 
   findOne(id: number) {
     return this.httpClient.get(environment.apiUrl + "user/" + id)
+  }
+
+  deleteUser(id: number) {
+    return this.httpClient.delete(environment.apiUrl + "user/" + id)
   }
 }

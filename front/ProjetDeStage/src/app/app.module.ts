@@ -9,11 +9,10 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {StudentComponent} from './components/etudiant/student.component';
-import {ProfessorComponent} from './components/professeur/professor.component';
+import {StudentComponent} from './components/student/student.component';
+import {ProfessorComponent} from './components/professor/professor.component';
 import {UserService} from "./services/user.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {RouterModule} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import {RouterModule} from "@angular/router";
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
   providers: [
     UserService

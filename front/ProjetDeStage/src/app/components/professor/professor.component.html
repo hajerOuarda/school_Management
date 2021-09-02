@@ -1,5 +1,5 @@
 <div class="container ">
-  <form [formGroup]="formProfesseur" (ngSubmit)="saveProfessor()">
+  <form [formGroup]="formUser" (ngSubmit)="saveProfessor()">
     <!-- 2 column grid layout with text inputs for the first and last names -->
     <div class="row mb-4">
       <div class="col">
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">enregistrer professeur</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4">{{userId ? 'update' : 'save' }}</button>
 
   </form>
 </div>
