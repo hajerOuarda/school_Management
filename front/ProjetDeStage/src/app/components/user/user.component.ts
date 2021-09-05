@@ -1,30 +1,43 @@
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
 import {Injectable} from "@angular/core";
+import {User} from "../../models/user";
+import {finalize} from "rxjs/operators";
 
 @Injectable()
-export abstract class UserComponent {
+export abstract class UserComponent<U extends User> {
 
-  user: User = new class extends User {};
+  user!: U;
   formUser!: FormGroup;
   userId: number = 0
+  isReady: boolean = false;
 
   protected constructor(readonly userService: UserService,
                         readonly activatedRoute: ActivatedRoute) {
+    this.initUser();
     activatedRoute.params.subscribe(param => {
       if (param.id) {
-        this.userId = param.id
-        this.userService.findOne(this.userId).subscribe((user: any) =>
-            this.user = user,
-          error => console.log(error),
-          () =>
-            this.initForm());
+        this.userService.findOne(this.userId)
+          .pipe(
+            finalize(() => {
+              this.initForm();
+              this.isReady = true;
+            })
+          )
+          .subscribe((user: any) => {
+              this.user = user;
+              this.userId = param.id
+            },
+            error => console.log(error));
+      } else {
+        this.initForm();
+        this.isReady = true;
       }
     })
-    this.initForm()
   }
+
+  abstract initUser(): void;
 
   public initForm() {
     this.formUser = new FormGroup({
@@ -50,15 +63,15 @@ export abstract class UserComponent {
     console.log(this.user);
     let callBack;
     //add section
-      if (type == 'student') {
-        callBack = this.userService.addUser("student", this.user)
-      } else {
-        callBack = this.userService.addUser("professor", this.user)
-      }
+    if (type == 'student') {
+      callBack = this.userService.addUser("student", this.user)
+    } else {
+      callBack = this.userService.addUser("professor", this.user)
+    }
     //update section
-      if (this.userId)
-        callBack = this.userService.updateUser(this.user, this.userId);
+    if (this.userId)
+      callBack = this.userService.updateUser(this.user, this.userId);
 
-      callBack.subscribe(res => console.log(res));
+    callBack.subscribe(res => console.log(res));
   }
 }

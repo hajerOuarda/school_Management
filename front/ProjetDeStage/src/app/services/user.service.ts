@@ -4,7 +4,7 @@ import {User} from "../models/user";
 import {Observable} from "rxjs";
 import {environment} from "src/environments/environment"
 import {Student} from "../models/student";
-import {elementAt, map} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {Professor} from "../models/professor";
 
 @Injectable({

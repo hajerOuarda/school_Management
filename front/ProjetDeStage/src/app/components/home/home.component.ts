@@ -54,6 +54,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate([myLink])
   }
 
+  navigateToClass(){
+      this.router.navigate(['class'])
+
+  }
+
   // navigateToProfessor() {
   //   this.router.navigate(['professor'])
   // }
@@ -83,5 +88,9 @@ export class HomeComponent implements OnInit {
       this.deleteModal?.hide();
       delete this.selectedUser;
     })
+  }
+
+  sayHi(){
+    console.log('hi')
   }
 }

@@ -1,5 +1,5 @@
 <div class="container ">
-  <form [formGroup]="formUser" (ngSubmit)="saveProfessor()">
+  <form [formGroup]="formUser" (ngSubmit)="saveProfessor()" *ngIf="formUser">
     <!-- 2 column grid layout with text inputs for the first and last names -->
     <div class="row mb-4">
       <div class="col">

@@ -13,6 +13,7 @@ import {StudentComponent} from './components/student/student.component';
 import {ProfessorComponent} from './components/professor/professor.component';
 import {UserService} from "./services/user.service";
 import {HttpClientModule} from "@angular/common/http";
+import { ClassComponent } from './components/classe/class.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import {HttpClientModule} from "@angular/common/http";
     NavbarComponent,
     StudentComponent,
     ProfessorComponent,
+    ClassComponent,
+
   ],
   imports: [
     BrowserModule,

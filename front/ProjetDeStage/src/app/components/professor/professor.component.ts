@@ -10,9 +10,10 @@ import {UserComponent} from "../user/user.component";
   templateUrl: './professor.component.html',
   styleUrls: ['./professor.component.css']
 })
-export class ProfessorComponent extends UserComponent {
-
-  user: Professor = new Professor();
+export class ProfessorComponent extends UserComponent<Professor> {
+  initUser(): void {
+    this.user = new Professor();
+  }
 
   constructor(readonly userService: UserService,
               readonly activatedRoute: ActivatedRoute) {
@@ -30,11 +31,13 @@ export class ProfessorComponent extends UserComponent {
 
   protected handleValueChanges(value: any) {
     super.handleValueChanges(value);
-    this.user.cin = value.cin;
-    this.user.matiereEnseigne = value.matiereEnseigne;
-    this.user.titreProf = value.titreProf;
-    this.user.cv = value.CV;
-    this.user.salaire = value.salaire;
+    if (this.isReady) {
+      this.user.cin = value.cin;
+      this.user.matiereEnseigne = value.matiereEnseigne;
+      this.user.titreProf = value.titreProf;
+      this.user.cv = value.CV;
+      this.user.salaire = value.salaire;
+    }
   }
 
   saveProfessor() {
