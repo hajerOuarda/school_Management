@@ -22,11 +22,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 @RestController
 public class UserControllerImpl implements UserController {
     private final UserService userService;
