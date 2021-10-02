@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +22,18 @@ public class Class implements AbstractEntity<Long> {
 
     private String filliers;
     private String niveauEtude;
+
+    @OneToMany
+    @ToString.Exclude
+    List<Student> students = new ArrayList<>();
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<Professor> professors = new ArrayList<Professor>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Subject> subjects = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

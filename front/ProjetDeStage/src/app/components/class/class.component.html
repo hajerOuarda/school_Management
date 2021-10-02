@@ -1,7 +1,7 @@
 <p>class works!</p>
 
 <div class="container">
-  <form [formGroup]="formClass" (ngSubmit)="saveClass()" *ngIf="formClass" >
+  <form [formGroup]="formClass" (ngSubmit)="saveClass()" *ngIf="formClass">
     <div class="row mb-4">
       <div class="col">
         <div class="form-outline">
@@ -16,10 +16,15 @@
         </div>
       </div>
     </div>
+    <div class="form-row mb-4">
+      <select class="form-control" [multiple]="true" formControlName="subjects">
+        <option *ngFor="let s of subjects" [value]="s">{{s.name}}</option>
+      </select>
+    </div>
 
 
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4"  >Save Class </button>
+    <button type="submit" class="btn btn-primary btn-block mb-4">Save Class</button>
 
   </form>
 </div>

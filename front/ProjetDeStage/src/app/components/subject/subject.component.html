@@ -1,0 +1,20 @@
+<p>subject works!</p>
+
+<div class="container">
+  <form [formGroup]="formSubject" (ngSubmit)="saveSubject()" *ngIf="formSubject">
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="form6Example1" formControlName="name" class="form-control"/>
+          <label class="form-label" for="form6Example1">Subject Name </label>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Save Subject</button>
+
+  </form>
+</div>

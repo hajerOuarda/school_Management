@@ -69,6 +69,30 @@
       </div>
     </div>
 
+    <div class="dropdown">
+      <select >
+        <option>Choose class</option>
+        <option *ngFor="let class of myClasses">{{class.filliers}}</option>
+      </select>
+    </div>
+    <div class="dropdown">
+
+      <button
+
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+        <li *ngFor="let class of myClasses"><a class="dropdown-item" href="{{class.filliers}}">{{class.filliers}}</a></li>
+      </ul>
+    </div>
+
     <!-- -->
     <div class="btn-group">
       <input

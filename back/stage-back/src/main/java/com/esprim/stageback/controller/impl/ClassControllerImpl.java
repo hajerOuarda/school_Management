@@ -1,7 +1,7 @@
 package com.esprim.stageback.controller.impl;
 
 import com.esprim.stageback.controller.ClassController;
-import com.esprim.stageback.dto.ClasseDTO;
+import com.esprim.stageback.dto.ClassDTO;
 import com.esprim.stageback.mapper.ClassMapper;
 import com.esprim.stageback.models.Class;
 import com.esprim.stageback.service.ClassService;
@@ -30,14 +30,14 @@ public class ClassControllerImpl implements ClassController {
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClasseDTO save(@RequestBody ClasseDTO classeDTO) {
+    public ClassDTO save(@RequestBody ClassDTO classDTO) {
 
-        return classMapper.asDTO(classService.save(classeDTO));
+        return classMapper.asDTO(classService.save(classDTO));
     }
 
     @Override
     @GetMapping("/{id}")
-    public ClasseDTO findById(@PathVariable("id") Long id) {
+    public ClassDTO findById(@PathVariable("id") Long id) {
         Class aClass = classService.findById(id).orElse(null);
         return classMapper.asDTO(aClass);
     }
@@ -50,16 +50,16 @@ public class ClassControllerImpl implements ClassController {
 
     @Override
     @GetMapping
-    public List<ClasseDTO> list() {
+    public List<ClassDTO> list() {
 
         return classMapper.asDTOList(classService.findAll());
     }
 
     @Override
     @GetMapping("/page-query")
-    public Page<ClasseDTO> pageQuery(Pageable pageable) {
+    public Page<ClassDTO> pageQuery(Pageable pageable) {
         Page<Class> classePage = classService.findAll(pageable);
-        List<ClasseDTO> dtoList = classePage
+        List<ClassDTO> dtoList = classePage
                 .stream()
                 .map(classMapper::asDTO).collect(Collectors.toList());
         return new PageImpl<>(dtoList, pageable, classePage.getTotalElements());
@@ -67,8 +67,8 @@ public class ClassControllerImpl implements ClassController {
 
     @Override
     @PutMapping("/{id}")
-    public ClasseDTO update(@RequestBody ClasseDTO classeDTO, @PathVariable("id") Long id) {
-        Class aClass = classMapper.asEntity(classeDTO);
-        return classMapper.asDTO(classService.update(classeDTO, id));
+    public ClassDTO update(@RequestBody ClassDTO classDTO, @PathVariable("id") Long id) {
+        //Class aClass = classMapper.asEntity(classeDTO);
+        return classMapper.asDTO(classService.update(classDTO, id));
     }
 }

@@ -6,21 +6,24 @@ import {environment} from "src/environments/environment"
 import {Student} from "../models/student";
 import {map} from "rxjs/operators";
 import {Professor} from "../models/professor";
+import {BaseService} from "./base.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends BaseService {
 
-
-  constructor(private readonly httpClient: HttpClient) {
+  constructor(protected readonly httpClient: HttpClient) {
+    super(httpClient);
+    super.path = 'user/';
   }
 
-  addUser(type: string, user: User): Observable<any> {
+  // @ts-ignore
+  addOne(type: string, user: User): Observable<any> {
     return this.httpClient.post(environment.apiUrl + "user/" + type, user);
   }
 
-  showAllUsers() {
+  findAll() {
     return this.httpClient.get(environment.apiUrl + "user/")
       .pipe(
         map((el: any) => {
@@ -35,15 +38,4 @@ export class UserService {
       );
   }
 
-  updateUser(user: any, id: number) {
-    return this.httpClient.put(environment.apiUrl + "user/" + id, user)
-  }
-
-  findOne(id: number) {
-    return this.httpClient.get(environment.apiUrl + "user/" + id)
-  }
-
-  deleteUser(id: number) {
-    return this.httpClient.delete(environment.apiUrl + "user/" + id)
-  }
 }

@@ -1,11 +1,13 @@
 package com.esprim.stageback.service.impl;
 
 import com.esprim.stageback.dao.ClasseRepository;
-import com.esprim.stageback.dto.ClasseDTO;
+import com.esprim.stageback.dto.ClassDTO;
+import com.esprim.stageback.dto.SubjectDTO;
 import com.esprim.stageback.mapper.ClassMapper;
 import com.esprim.stageback.mapper.GenericMapper;
 import com.esprim.stageback.models.Class;
 import com.esprim.stageback.service.ClassService;
+import com.esprim.stageback.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,18 +24,22 @@ public class ClassServiceImpl implements ClassService {
     @Autowired
     private ClassMapper classMapper;
 
+    @Autowired
+    private SubjectService subjectService;
+
     public ClassServiceImpl(ClasseRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public GenericMapper<Class, ClasseDTO> getMapper() {
+    public GenericMapper<Class, ClassDTO> getMapper() {
         return classMapper;
     }
 
     @Override
-    public Class save(ClasseDTO entity) {
+    public Class save(ClassDTO entity) {
         Class aClass = getMapper().asEntity(entity);
+
         aClass = repository.save(aClass);
         return aClass;
     }
@@ -66,12 +72,20 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public Class update(ClasseDTO dto, Long id) {
+    public Class update(ClassDTO dto, Long id) {
         Optional<Class> optional = findById(id);
-        if (optional.isPresent()) {
-            return save(dto);
-        }
-        return null;
+        return optional.map(aClass -> save(aClass, dto)).orElse(null);
     }
 
+    @Override
+    public Class save(Class entity, ClassDTO dto) {
+        for (SubjectDTO subject : dto.getSubjects()) {
+            subjectService.findById(subject.getId())
+                    .ifPresent(subject1 ->
+                            entity.getSubjects().add(subject1));
+        }
+        entity.setFilliers(dto.getFilliers());
+        entity.setNiveauEtude(dto.getNiveauEtude());
+        return repository.save(entity);
+    }
 }

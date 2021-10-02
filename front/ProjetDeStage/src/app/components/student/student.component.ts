@@ -4,6 +4,8 @@ import {Student} from "../../models/student";
 import {UserService} from "../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {UserComponent} from "../user/user.component";
+import {Class} from "../../models/class";
+import {ClassService} from "../../services/class.service";
 
 @Component({
   selector: 'app-student',
@@ -11,17 +13,26 @@ import {UserComponent} from "../user/user.component";
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent extends UserComponent<Student> {
+
+  myClasses: Array<Class> = [];
+
   initUser(): void {
     this.user = new Student();
   }
 
   constructor(readonly userService: UserService,
+              readonly classService: ClassService,
               readonly activatedRoute: ActivatedRoute) {
     super(userService, activatedRoute)
+    this.initForm();
   }
 
   initForm() {
     super.initForm()
+    this.classService.findAll()
+      .subscribe((data: any) => {
+        this.myClasses = data;
+      })
     this.formUser.addControl('cne', new FormControl(this.user.cne, Validators.required))
     this.formUser.addControl('address', new FormControl(this.user.address, Validators.required))
     this.formUser.addControl('bacYear', new FormControl(this.user.bacYear, Validators.required))
@@ -46,4 +57,6 @@ export class StudentComponent extends UserComponent<Student> {
     this.saveUser('student')
 
   }
+
+
 }

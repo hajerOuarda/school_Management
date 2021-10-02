@@ -11,7 +11,9 @@ public interface GenericService<D, E, M> {
 
     GenericMapper<E, D> getMapper();
 
-    E save(D entity);
+    E save(D dto);
+
+    E save(E entity, D dto);
 
     List<E> save(List<E> entities);
 

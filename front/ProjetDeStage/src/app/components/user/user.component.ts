@@ -18,6 +18,7 @@ export abstract class UserComponent<U extends User> {
     this.initUser();
     activatedRoute.params.subscribe(param => {
       if (param.id) {
+        this.userId = param.id;
         this.userService.findOne(this.userId)
           .pipe(
             finalize(() => {
@@ -64,13 +65,13 @@ export abstract class UserComponent<U extends User> {
     let callBack;
     //add section
     if (type == 'student') {
-      callBack = this.userService.addUser("student", this.user)
+      callBack = this.userService.addOne("student", this.user)
     } else {
-      callBack = this.userService.addUser("professor", this.user)
+      callBack = this.userService.addOne("professor", this.user)
     }
     //update section
     if (this.userId)
-      callBack = this.userService.updateUser(this.user, this.userId);
+      callBack = this.userService.update(this.user, this.userId);
 
     callBack.subscribe(res => console.log(res));
   }
