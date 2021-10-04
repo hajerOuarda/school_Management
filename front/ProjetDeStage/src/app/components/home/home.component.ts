@@ -4,8 +4,8 @@ import {UserService} from "../../services/user.service";
 import {Student} from "../../models/student";
 import {Router} from "@angular/router";
 import {ModalDirective} from "angular-bootstrap-md";
-import {ClassService} from "../../services/class.service";
-import {Class} from "../../models/class";
+import {ClassService} from "../../modules/school/services/class.service";
+import {Class} from "../../modules/school/models/class";
 import {Subject} from "../../models/subject";
 import {SubjectService} from "../../services/subject.service";
 

@@ -4,8 +4,8 @@ import {Student} from "../../models/student";
 import {UserService} from "../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {UserComponent} from "../user/user.component";
-import {Class} from "../../models/class";
-import {ClassService} from "../../services/class.service";
+import {Class} from "../../modules/school/models/class";
+import {ClassService} from "../../modules/school/services/class.service";
 
 @Component({
   selector: 'app-student',
