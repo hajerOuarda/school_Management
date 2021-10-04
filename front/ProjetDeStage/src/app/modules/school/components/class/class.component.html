@@ -1,0 +1,58 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">School</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Class</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">School</h4>
+        <p class="card-description mb-0">This list present....</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 grid-margin stretch-card ml-auto">
+    <a routerLink="/class/create" class="btn btn-primary btn-block">New class</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Class</h6>
+        <div class="table-responsive">
+          <ngx-datatable
+            class="bootstrap"
+            [rows]="rows"
+            [loadingIndicator]="loadingIndicator"
+            [columnMode]="ColumnMode.force"
+            [footerHeight]="50"
+            [limit]="10"
+            rowHeight="auto"
+          >
+            <ngx-datatable-column name="Id"></ngx-datatable-column>
+            <ngx-datatable-column name="Field" prop="filliers"></ngx-datatable-column>
+            <ngx-datatable-column name="Step" prop="niveauEtude"></ngx-datatable-column>
+            <ngx-datatable-column name="Actions" [sortable]="false">
+              <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                <button class="btn btn-primary btn-icon mr-1" type="button" (click)='onUpdate(row)'>
+                  <i class="feather icon-edit-3"></i>
+                </button>
+                <button class="btn btn-danger btn-icon" type="button" (click)='onDelete(row)'>
+                  <i class="feather icon-trash"></i>
+                </button>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
