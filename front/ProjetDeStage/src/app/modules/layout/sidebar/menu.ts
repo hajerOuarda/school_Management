@@ -35,7 +35,7 @@ export const MENU: MenuItem[] = [
   {
     label: 'Students',
     icon: 'feather',
-    link: '/students',
+    link: '/student',
   },
   {
     label: 'Teacher',

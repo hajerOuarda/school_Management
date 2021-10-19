@@ -2,15 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {Subject} from "../../models/subject";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SubjectService} from "../../services/subject.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-subject',
-  templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.css']
+  templateUrl: './edit-subject.component.html',
+  styleUrls: ['./edit-subject.component.css']
 })
-export class SubjectComponent implements OnInit {
+export class EditSubjectComponent implements OnInit {
 
   subject: Subject = new Subject();
   formSubject ?: FormGroup
@@ -18,7 +18,8 @@ export class SubjectComponent implements OnInit {
   isReady: boolean = false;
 
   constructor(private subjectService: SubjectService,
-              readonly activatedRoute: ActivatedRoute) {
+              readonly activatedRoute: ActivatedRoute,
+              private readonly router: Router) {
     activatedRoute.params.subscribe(param => {
       if (param.id) {
         this.subjectService.findOne(this.subjectId)
@@ -55,8 +56,16 @@ export class SubjectComponent implements OnInit {
   }
 
   saveSubject() {
-    this.subjectService.addOne(this.subject)
+    if(this.subjectId) {
+    this.subjectService.update(this.subject,this.subjectId)
       .subscribe(data => console.log(data), error => console.log(error))
+    }
+    else {
+      this.subjectService.addOne(this.subject)
+        .subscribe(data => console.log(data))
+    }
+    this.router.navigate(['subject']);
+
   }
 
 }

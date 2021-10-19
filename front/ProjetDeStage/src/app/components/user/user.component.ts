@@ -1,8 +1,8 @@
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../services/user.service";
+import {UserService} from "../../modules/school/services/user.service";
 import {Injectable} from "@angular/core";
-import {User} from "../../models/user";
+import {User} from "../../modules/school/models/user";
 import {finalize} from "rxjs/operators";
 
 @Injectable()

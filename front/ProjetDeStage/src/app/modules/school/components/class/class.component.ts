@@ -25,10 +25,12 @@ export class ClassComponent implements OnInit {
   }
 
   onDelete(row: any) {
-    console.log(row);
+    this.classService.deleteOne(row.id)
+      .subscribe(data=> console.log(data));
+    this.router.navigate(['class']);
   }
 
   onUpdate(row: any) {
-    this.router.navigate(['/class', row.id])
+    this.router.navigate(['class', row.id])
   }
 }

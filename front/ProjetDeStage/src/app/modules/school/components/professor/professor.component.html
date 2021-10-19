@@ -1,7 +1,7 @@
 <nav class="page-breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/">School</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Class</li>
+    <li class="breadcrumb-item active" aria-current="page">Professor</li>
   </ol>
 </nav>
 
@@ -18,7 +18,7 @@
 
 <div class="row">
   <div class="col-md-3 grid-margin stretch-card ml-auto">
-    <a routerLink="/class/create" class="btn btn-primary btn-block">New class</a>
+    <a routerLink="/professor/create" class="btn btn-primary btn-block">New Professor</a>
   </div>
 </div>
 
@@ -26,11 +26,11 @@
   <div class="col-md-12 stretch-card">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">Class</h6>
+        <h6 class="card-title">Professor</h6>
         <div class="table-responsive">
           <ngx-datatable
             class="bootstrap"
-            [rows]="rows"
+            [rows]="professors"
             [loadingIndicator]="loadingIndicator"
             [columnMode]="ColumnMode.force"
             [footerHeight]="50"
@@ -38,8 +38,18 @@
             rowHeight="auto"
           >
             <ngx-datatable-column name="Id"></ngx-datatable-column>
-            <ngx-datatable-column name="Field" prop="filliers"></ngx-datatable-column>
-            <ngx-datatable-column name="Studying level" prop="niveauEtude"></ngx-datatable-column>
+            <ngx-datatable-column name="firstName" prop="firstName"></ngx-datatable-column>
+            <ngx-datatable-column name="lastName" prop="lastName"></ngx-datatable-column>
+            <ngx-datatable-column name="phone" prop="phone"></ngx-datatable-column>
+            <ngx-datatable-column name="email" prop="email"></ngx-datatable-column>
+
+            <ngx-datatable-column name="cin" prop="cin"></ngx-datatable-column>
+            <ngx-datatable-column name="matiereEnseigne" prop="matiereEnseigne"></ngx-datatable-column>
+            <ngx-datatable-column name="titreProf" prop="titreProf"></ngx-datatable-column>
+            <ngx-datatable-column name="CV" prop="CV"></ngx-datatable-column>
+            <ngx-datatable-column name="salaire" prop="salaire"></ngx-datatable-column>
+
+
             <ngx-datatable-column name="Actions" [sortable]="false">
               <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
                 <button class="btn btn-primary btn-icon mr-1" type="button" (click)='onUpdate(row)'>

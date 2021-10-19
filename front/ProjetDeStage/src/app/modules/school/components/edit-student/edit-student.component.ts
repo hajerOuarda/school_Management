@@ -2,37 +2,52 @@ import {Component} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {Student} from "../../models/student";
 import {UserService} from "../../services/user.service";
-import {ActivatedRoute} from "@angular/router";
-import {UserComponent} from "../user/user.component";
-import {Class} from "../../modules/school/models/class";
-import {ClassService} from "../../modules/school/services/class.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserComponent} from "../../../../components/user/user.component";
+import {Class} from "../../models/class";
+import {ClassService} from "../../services/class.service";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css']
+  templateUrl: './edit-student.component.html',
+  styleUrls: ['./edit-student.component.css']
 })
-export class StudentComponent extends UserComponent<Student> {
+export class EditStudentComponent extends UserComponent<Student> {
 
   myClasses: Array<Class> = [];
+  studentId: number = 0;
+  isReady: boolean = false;
 
   initUser(): void {
     this.user = new Student();
   }
 
   constructor(readonly userService: UserService,
-              readonly classService: ClassService,
-              readonly activatedRoute: ActivatedRoute) {
+              readonly studentService: UserService,
+              readonly activatedRoute: ActivatedRoute,
+              private readonly router: Router) {
     super(userService, activatedRoute)
     this.initForm();
+    this.studentId = (parseInt(<string>activatedRoute.snapshot.paramMap.get("id")) || 0);
+    if (this.studentId) {
+      this.studentService.findOne(this.studentId)
+        .pipe(
+          finalize(() => {
+            this.isReady = true;
+            this.initForm();
+          })
+        )
+        .subscribe((_data: any) => this.user = _data);
+    } else {
+      this.isReady = true;
+      this.initForm();
+    }
   }
+
 
   initForm() {
     super.initForm()
-    this.classService.findAll()
-      .subscribe((data: any) => {
-        this.myClasses = data;
-      })
     this.formUser.addControl('cne', new FormControl(this.user.cne, Validators.required))
     this.formUser.addControl('address', new FormControl(this.user.address, Validators.required))
     this.formUser.addControl('bacYear', new FormControl(this.user.bacYear, Validators.required))
@@ -54,9 +69,16 @@ export class StudentComponent extends UserComponent<Student> {
   }
 
   saveStudent() {
-    this.saveUser('student')
+      if (this.studentId) {
+        this.studentService.update(this.user, this.studentId)
+          .subscribe(_data => console.debug(_data));
+      } else {
+        this.saveUser('student');
 
-  }
+      }
+      this.router.navigate(['student']);
+    }
+
 
 
 }

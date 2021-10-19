@@ -5,12 +5,18 @@ import {EditClassComponent} from "./components/edit-class/edit-class.component";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
+import { SubjectComponent } from './components/subject/subject.component';
+import { StudentComponent } from './components/student/student.component';
+import { ProfessorComponent } from './components/professor/professor.component';
 
 
 @NgModule({
   declarations: [
     EditClassComponent,
     ClassComponent,
+    SubjectComponent,
+    StudentComponent,
+    ProfessorComponent,
   ],
   imports: [
     CommonModule,

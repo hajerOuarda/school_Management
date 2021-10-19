@@ -9,11 +9,11 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {StudentComponent} from './components/student/student.component';
-import {ProfessorComponent} from './components/professor/professor.component';
-import {UserService} from "./services/user.service";
+import {EditStudentComponent} from './modules/school/components/edit-student/edit-student.component';
+import {EditProfessorComponent} from './modules/school/components/edit-professor/edit-professor.component';
+import {UserService} from "./modules/school/services/user.service";
 import {HttpClientModule} from "@angular/common/http";
-import {SubjectComponent} from './components/subject/subject.component';
+import {EditSubjectComponent} from './modules/school/components/edit-subject/edit-subject.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorPageComponent} from "./components/error-page/error-page.component";
 import {LayoutModule} from "./modules/layout/layout.module";
@@ -24,9 +24,9 @@ import {AuthGuard} from "./core/guard/auth.guard";
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    StudentComponent,
-    ProfessorComponent,
-    SubjectComponent,
+    EditStudentComponent,
+    EditProfessorComponent,
+    EditSubjectComponent,
     ErrorPageComponent,
   ],
   imports: [

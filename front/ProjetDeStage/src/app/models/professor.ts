@@ -1,4 +1,4 @@
-import {User} from "./user";
+import {User} from "../modules/school/models/user";
 
 export class Professor extends User{
   cin! :String ;

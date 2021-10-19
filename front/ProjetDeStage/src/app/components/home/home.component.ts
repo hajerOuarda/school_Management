@@ -1,13 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {User} from "../../models/user";
-import {UserService} from "../../services/user.service";
-import {Student} from "../../models/student";
+import {User} from "../../modules/school/models/user";
+import {UserService} from "../../modules/school/services/user.service";
+import {Student} from "../../modules/school/models/student";
 import {Router} from "@angular/router";
 import {ModalDirective} from "angular-bootstrap-md";
 import {ClassService} from "../../modules/school/services/class.service";
 import {Class} from "../../modules/school/models/class";
-import {Subject} from "../../models/subject";
-import {SubjectService} from "../../services/subject.service";
+import {Subject} from "../../modules/school/models/subject";
+import {SubjectService} from "../../modules/school/services/subject.service";
 
 @Component({
   selector: 'app-home',
@@ -74,9 +74,9 @@ export class HomeComponent implements OnInit {
 
 // <----- navigations section ----- >
   navigateToUserType(userType: string) {
-    let myLink = 'student'
-    if (userType == "professor")
-      myLink = 'professor'
+    let myLink = 'edit-student'
+    if (userType == "edit-professor")
+      myLink = 'edit-professor'
     this.router.navigate([myLink])
   }
 
@@ -94,8 +94,8 @@ export class HomeComponent implements OnInit {
 // <----- Update section ----- >
   updateUser(id: number, userType: string = 'student') {
     let routeLink = 'student';
-    if (userType == 'professor') {
-      routeLink = 'professor';
+    if (userType == 'edit-professor') {
+      routeLink = 'edit-professor';
     }
     this.router.navigate([routeLink, id])
   }

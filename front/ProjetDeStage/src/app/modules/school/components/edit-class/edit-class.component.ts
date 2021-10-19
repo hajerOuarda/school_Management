@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Class} from "../../models/class";
 import {ClassService} from "../../services/class.service";
-import {SubjectService} from "../../../../services/subject.service";
+import {SubjectService} from "../../services/subject.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {finalize} from "rxjs/operators";
 import {HomeComponent} from "../../../../components/home/home.component";
@@ -68,7 +68,7 @@ export class EditClassComponent implements OnInit {
       this.classService.addOne(this.class)
         .subscribe(data => console.log(data))
     }
-    this.router.navigate(['home']);
+    this.router.navigate(['class']);
   }
 
 }
