@@ -221,11 +221,10 @@
         <div class='external-events'>
           <h6 class="mb-2 text-muted">Draggable subjects</h6>
           <div #externalEvents class="d-flex">
-            <div class='fc-event' [attr.bgColor]="'#fffbf2'" [attr.bdcolor]="'#fbbc06'">Birth Day</div>
-            <div class='fc-event' [attr.bgColor]="'#fff0f4'" [attr.bdColor]="'#ff3366'">New Project</div>
-            <div class='fc-event' [attr.bgColor]="'#f7fdfd'" [attr.bdColor]="'#66d1d1'">Anniversary</div>
-            <div class='fc-event' [attr.bgColor]="'#f1fef7'" [attr.bdColor]="'#10b759'">Clent Meeting</div>
-            <div class='fc-event' [attr.bgColor]="'#f3f3fe'" [attr.bdColor]="'#727cf5'">Office Trip</div>
+            <div class='fc-event'
+                 *ngFor="let subject of subjects"
+                 [attr.bgColor]="subject.bgColor"
+                 [attr.bdColor]="subject.bdColor">{{subject.name}}</div>
           </div>
         </div>
         <full-calendar

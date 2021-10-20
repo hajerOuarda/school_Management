@@ -8,7 +8,8 @@ import {INITIAL_EVENTS, createEventId} from './event-utils';
 import interactionPlugin, {Draggable} from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
-import timeGridPlugin from "@fullcalendar/timegrid"; // include this line
+import timeGridPlugin from "@fullcalendar/timegrid";
+import {SubjectService} from "../../modules/school/services/subject.service"; // include this line
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -16,6 +17,7 @@ FullCalendarModule.registerPlugins([
   listPlugin,
   timeGridPlugin
 ])
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -51,8 +53,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   };
   currentEvents: EventApi[] = [];
   @ViewChild('externalEvents', {static: true}) externalEvents?: ElementRef;
+  subjects: any[] = [];
 
-  constructor(private readonly calendar: NgbCalendar) {
+  constructor(private readonly calendar: NgbCalendar,
+              private readonly subjectService: SubjectService) {
   }
 
   ngOnInit(): void {
@@ -99,18 +103,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // For external-events dragging
-    new Draggable(this.externalEvents?.nativeElement, {
-      itemSelector: '.fc-event',
-      eventData: function (eventEl) {
-        return {
-          title: eventEl.innerText,
-          backgroundColor: eventEl.getAttribute('bgColor'),
-          borderColor: eventEl.getAttribute('bdColor')
-        };
-      }
-    });
-
+    this.subjectService.findAll()
+      .subscribe(_data => {
+        _data.map((_s: any) => {
+          _s.bgColor = this.randomColor;
+          _s.bdColor = this.randomColor;
+        });
+        this.subjects = _data;
+        // For external-events dragging
+        new Draggable(this.externalEvents?.nativeElement, {
+          itemSelector: '.fc-event',
+          eventData: function (eventEl) {
+            return {
+              title: eventEl.innerText,
+              backgroundColor: eventEl.getAttribute('bgColor'),
+              borderColor: eventEl.getAttribute('bdColor')
+            };
+          }
+        });
+      })
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
@@ -140,4 +151,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.currentEvents = events;
   }
 
+  get randomColor() {
+    const color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
+  }
 }
