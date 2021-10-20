@@ -5,9 +5,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Getter
@@ -33,7 +31,7 @@ public class Class implements AbstractEntity<Long> {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<Subject> subjects = new ArrayList<>();
+    private Set<Subject> subjects = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

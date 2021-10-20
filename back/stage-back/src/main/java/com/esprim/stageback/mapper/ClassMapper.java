@@ -9,6 +9,5 @@ import org.mapstruct.Mapping;
 public interface ClassMapper extends GenericMapper<Class, ClassDTO> {
     @Override
     @Mapping(target = "id", ignore = false)
-    @Mapping(target = "subjects", ignore = true)
     Class asEntity(ClassDTO dto);
 }

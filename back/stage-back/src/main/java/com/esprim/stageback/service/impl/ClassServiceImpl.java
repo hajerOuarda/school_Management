@@ -74,10 +74,11 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public Class update(ClassDTO dto, Long id) {
         Optional<Class> optional = findById(id);
-        return optional.map(aClass -> save(aClass, dto)).orElse(null);
+        return optional.map(aClass -> save(dto)).orElse(null);
     }
 
     @Override
+    @Deprecated
     public Class save(Class entity, ClassDTO dto) {
         for (SubjectDTO subject : dto.getSubjects()) {
             subjectService.findById(subject.getId())
