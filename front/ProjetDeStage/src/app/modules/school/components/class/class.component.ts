@@ -33,4 +33,8 @@ export class ClassComponent implements OnInit {
   onUpdate(row: any) {
     this.router.navigate(['class', row.id])
   }
+
+  rendererSubject(values: any = []) {
+    return values.map((_s: { name: any; }) => _s.name).join(', ');
+  }
 }

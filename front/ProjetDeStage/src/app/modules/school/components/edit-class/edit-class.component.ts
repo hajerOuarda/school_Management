@@ -71,4 +71,8 @@ export class EditClassComponent implements OnInit {
     this.router.navigate(['class']);
   }
 
+  hasSubject(s1: any, s2: any): boolean {
+    return s1 && s2 && s1.id == s2.id;
+  }
+
 }

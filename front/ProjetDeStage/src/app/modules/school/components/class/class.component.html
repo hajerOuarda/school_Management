@@ -40,7 +40,11 @@
             <ngx-datatable-column name="Id"></ngx-datatable-column>
             <ngx-datatable-column name="Field" prop="filliers"></ngx-datatable-column>
             <ngx-datatable-column name="Studying level" prop="niveauEtude"></ngx-datatable-column>
-            <ngx-datatable-column name="subjects" prop="subjects"></ngx-datatable-column>
+            <ngx-datatable-column name="subjects" prop="subjects">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <span>{{rendererSubject(value)}}</span>
+              </ng-template>
+            </ngx-datatable-column>
 
             <ngx-datatable-column name="Actions" [sortable]="false">
               <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>

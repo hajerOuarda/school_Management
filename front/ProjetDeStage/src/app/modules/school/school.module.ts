@@ -4,7 +4,7 @@ import {ClassComponent} from "./components/class/class.component";
 import {EditClassComponent} from "./components/edit-class/edit-class.component";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {RouterModule} from "@angular/router";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import { SubjectComponent } from './components/subject/subject.component';
 import { StudentComponent } from './components/student/student.component';
 import { ProfessorComponent } from './components/professor/professor.component';
@@ -23,7 +23,6 @@ import { ProfessorComponent } from './components/professor/professor.component';
     NgxDatatableModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
   ]
 })
 export class SchoolModule {
