@@ -1,5 +1,5 @@
 <div class="container ">
-  <form [formGroup]="formUser" (ngSubmit)="saveProfessor()" *ngIf="formUser">
+  <form [formGroup]="formUser" (ngSubmit)="saveProfessor()" *ngIf="isReady && formUser">
     <!-- 2 column grid layout with text inputs for the first and last names -->
     <div class="row mb-4">
       <div class="col">
@@ -58,9 +58,19 @@
           <input type="number" id="phone" formControlName="phone" class="form-control"/>
           <label class="form-label" for="phone">telephone</label>
         </div>
-    </div>
+      </div>
     </div>
 
+    <div class="col">
+      <div class="form-row mb-4">
+        <select class="form-control"
+                formControlName="classes"
+                [multiple]="true"
+                [compareWith]="compareClass">
+          <option *ngFor="let c of classes" [ngValue]="c">{{c.filliers}}</option>
+        </select>
+      </div>
+    </div>
     <!-- CV input -->
     <div class="form-outline mb-4">
       <div class="custom-file">

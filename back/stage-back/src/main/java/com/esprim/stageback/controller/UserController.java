@@ -33,4 +33,7 @@ public interface UserController {
 
     @ApiOperation("Update one data")
     public UserDTO update(@RequestBody UserDTO dto, @PathVariable("id") Long id);
+
+    @ApiOperation("Update specific user")
+    public UserDTO update(@PathVariable("type") String type, @PathVariable("id") Long id, @RequestBody Map user);
 }

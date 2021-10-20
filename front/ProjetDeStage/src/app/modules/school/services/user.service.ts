@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {environment} from "src/environments/environment"
 import {Student} from "../models/student";
 import {map} from "rxjs/operators";
-import {Professor} from "../../../models/professor";
+import {Professor} from "../models/professor";
 import {BaseService} from "./base.service";
 
 @Injectable({
@@ -21,6 +21,13 @@ export class UserService extends BaseService {
   // @ts-ignore
   addOne(type: string, user: User): Observable<any> {
     return this.httpClient.post(environment.apiUrl + "user/" + type, user);
+  }
+
+  update(user: any, id: number, type?: string): Observable<any> {
+    if (!type) {
+      return super.update(user, id);
+    }
+    return this.httpClient.put(environment.apiUrl + "user/" + type + "/" + id, user);
   }
 
   findAll() {

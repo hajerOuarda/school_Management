@@ -103,6 +103,22 @@ public class UserControllerImpl implements UserController {
         return proceedUser(userService.update(userDTO, id));
     }
 
+    @Override
+    @PutMapping("/{type}/{id}")
+    public UserDTO update(@PathVariable("type") String type,
+                          @PathVariable("id") Long id,
+                          Map userDTO) {
+        UserDTO dto;
+        ObjectMapper mapper = new ObjectMapper();
+        if ("professor".equals(type))
+            dto = mapper.convertValue(userDTO, ProfessorDto.class);
+        else if ("student".equals(type))
+            dto = mapper.convertValue(userDTO, StudentDto.class);
+        else
+            dto = mapper.convertValue(userDTO, UserDTO.class);
+        return proceedUser(userService.update(dto, id));
+    }
+
     private UserDTO proceedUser(User user) {
         UserDTO dto;
         if (user instanceof Professor)

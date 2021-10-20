@@ -12,10 +12,12 @@ export abstract class UserComponent<U extends User> {
   formUser!: FormGroup;
   userId: number = 0
   isReady: boolean = false;
+  initFormDef = true;
 
   protected constructor(readonly userService: UserService,
                         readonly activatedRoute: ActivatedRoute) {
     this.initUser();
+    if(this.initFormDef)
     activatedRoute.params.subscribe(param => {
       if (param.id) {
         this.userId = param.id;

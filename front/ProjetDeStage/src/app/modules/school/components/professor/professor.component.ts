@@ -3,7 +3,7 @@ import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {Student} from "../../models/student";
 import {ColumnMode} from '@swimlane/ngx-datatable';
-import {Professor} from "../../../../models/professor";
+import {Professor} from "../../models/professor";
 
 @Component({
   selector: 'app-professor',
