@@ -12,7 +12,6 @@ export class ClassComponent implements OnInit {
 
   rows = [];
   loadingIndicator = true;
-  reorderable = true;
   ColumnMode = ColumnMode;
 
   constructor(private readonly classService: ClassService,
