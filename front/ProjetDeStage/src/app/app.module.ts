@@ -18,6 +18,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorPageComponent} from "./components/error-page/error-page.component";
 import {LayoutModule} from "./modules/layout/layout.module";
 import {AuthGuard} from "./core/guard/auth.guard";
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {FeahterIconModule} from "./core/feather-icon/feather-icon.module";
+import {FullCalendarModule} from "@fullcalendar/angular";
 
 @NgModule({
   declarations: [
@@ -28,18 +31,21 @@ import {AuthGuard} from "./core/guard/auth.guard";
     EditProfessorComponent,
     EditSubjectComponent,
     ErrorPageComponent,
+    DashboardComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgbModule,
-    LayoutModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        MDBBootstrapModule.forRoot(),
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgbModule,
+        LayoutModule,
+        FeahterIconModule,
+        FullCalendarModule,
+    ],
   providers: [
     AuthGuard,
     UserService

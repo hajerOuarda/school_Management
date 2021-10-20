@@ -12,6 +12,7 @@ import {ClassComponent} from "./modules/school/components/class/class.component"
 import {SubjectComponent} from "./modules/school/components/subject/subject.component";
 import {StudentComponent} from "./modules/school/components/student/student.component";
 import {ProfessorComponent} from "./modules/school/components/professor/professor.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 const routes: Routes = [
   {path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)},
@@ -20,6 +21,8 @@ const routes: Routes = [
     component: BaseComponent,
     canActivate: [AuthGuard],
     children: [
+      {path: 'dashboard', component: DashboardComponent},
+
       {path: 'class', component: ClassComponent},
       {path: 'class/create', component: EditClassComponent},
       {path: 'class/:id', component: EditClassComponent},
@@ -33,6 +36,8 @@ const routes: Routes = [
       {path: 'professor', component: ProfessorComponent},
       {path: 'professor/create', component: EditProfessorComponent},
       {path: 'professor/:id', component: EditProfessorComponent},
+
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },
   {path: 'home', component: HomeComponent},
